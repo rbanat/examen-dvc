@@ -1,3 +1,5 @@
 /venv
-/clean_data.csv
-/models
+
+.python-version
+
+uv.lock

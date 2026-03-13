@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 PROCESSED_DIR = os.path.join("data", "processed_data")
-MODELS_DIR = "models"
+MODELS_DIR = os.path.join("models", "models")
 METRICS_DIR = "metrics"
 
 # Chargement des jeux de données

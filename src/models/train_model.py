@@ -4,7 +4,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
 PROCESSED_DIR = os.path.join("data", "processed_data")
-MODELS_DIR = "models"
+MODELS_DIR = os.path.join("models", "models")
 
 # Chargement des jeux de données
 X_train = pd.read_csv(os.path.join(PROCESSED_DIR, "X_train_scaled.csv"))

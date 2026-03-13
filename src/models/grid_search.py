@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
 
 PROCESSED_DIR = os.path.join("data", "processed_data")
-MODELS_DIR = "models"
+PARAMS_DIR = os.path.join("models", "params")
 
 PARAM_GRID = {
     "n_estimators": [100, 200],
@@ -36,8 +36,8 @@ best_params = grid_search.best_params_
 print(f"Meilleurs paramètres trouvés : {best_params}")
 
 # Sauvegarde
-os.makedirs(MODELS_DIR, exist_ok=True)
-with open(os.path.join(MODELS_DIR, "best_params.pkl"), "wb") as f:
+os.makedirs(PARAMS_DIR, exist_ok=True)
+with open(os.path.join(PARAMS_DIR, "best_params.pkl"), "wb") as f:
     pickle.dump(best_params, f)
 
-print(f"best_params.pkl sauvegardé dans '{MODELS_DIR}'")
+print(f"best_params.pkl sauvegardé dans '{PARAMS_DIR}'")
