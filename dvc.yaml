@@ -43,5 +43,7 @@ stages:
     - data/processed
     - models/models
     outs:
-    - metrics
     - models/data
+    metrics:
+    - metrics/scores.json:
+        cache: false

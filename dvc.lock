@@ -119,11 +119,10 @@ stages:
       size: 5384182
       nfiles: 1
     outs:
-    - path: metrics
+    - path: metrics/scores.json
       hash: md5
-      md5: 761b53078c673f2f6a1b2de8be0021b8.dir
+      md5: 9a08f7bd108ca0735fd6c54152270d1a
       size: 86
-      nfiles: 1
     - path: models/data
       hash: md5
       md5: 4cadf4e1e673756b10b3ac3166129c74.dir
