@@ -4,12 +4,16 @@ import pickle
 import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-PROCESSED_DIR = os.path.join("data", "processed_data")
+PROCESSED_DIR = os.path.join("data", "processed")
+NORMALIZED_DIR = os.path.join("data", "normalized")
 MODELS_DIR = os.path.join("models", "models")
+PREDICTIONS_DIR = os.path.join("models", "data")
 METRICS_DIR = "metrics"
+os.makedirs(METRICS_DIR, exist_ok=True)
+os.makedirs(PREDICTIONS_DIR, exist_ok=True)
 
 # Chargement des jeux de données
-X_test = pd.read_csv(os.path.join(PROCESSED_DIR, "X_test_scaled.csv"))
+X_test = pd.read_csv(os.path.join(NORMALIZED_DIR, "X_test_scaled.csv"))
 y_test = pd.read_csv(os.path.join(PROCESSED_DIR, "y_test.csv")).squeeze()
 
 # Chargement du modèle
@@ -47,6 +51,6 @@ predictions_df = pd.DataFrame({
     "y_true": y_test.values,
     "y_pred": y_pred,
 })
-predictions_path = os.path.join(PROCESSED_DIR, "predictions.csv")
+predictions_path = os.path.join(PREDICTIONS_DIR, "predictions.csv")
 predictions_df.to_csv(predictions_path, index=False)
-print(f"predictions.csv sauvegardé dans '{PROCESSED_DIR}'")
+print(f"predictions.csv sauvegardé dans '{PREDICTIONS_DIR}'")

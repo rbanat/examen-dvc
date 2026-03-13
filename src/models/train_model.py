@@ -3,15 +3,18 @@ import pickle
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
-PROCESSED_DIR = os.path.join("data", "processed_data")
+PROCESSED_DIR = os.path.join("data", "processed")
+NORMALIZED_DIR = os.path.join("data", "normalized")
+PARAMS_DIR = os.path.join("models", "params")
 MODELS_DIR = os.path.join("models", "models")
+os.makedirs(MODELS_DIR, exist_ok=True)
 
 # Chargement des jeux de données
-X_train = pd.read_csv(os.path.join(PROCESSED_DIR, "X_train_scaled.csv"))
+X_train = pd.read_csv(os.path.join(NORMALIZED_DIR, "X_train_scaled.csv"))
 y_train = pd.read_csv(os.path.join(PROCESSED_DIR, "y_train.csv")).squeeze()
 
 # Chargement des meilleurs hyperparamètres
-params_path = os.path.join(MODELS_DIR, "best_params.pkl")
+params_path = os.path.join(PARAMS_DIR, "best_params.pkl")
 with open(params_path, "rb") as f:
     best_params = pickle.load(f)
 

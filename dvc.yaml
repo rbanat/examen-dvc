@@ -1,0 +1,47 @@
+stages:
+  import_data:
+    cmd: python src/data/import_raw_data.py
+    deps:
+    - src/data/import_raw_data.py
+    outs:
+    - data/raw
+  split_data:
+    cmd: python src/data/split_data.py
+    deps:
+    - data/raw
+    - src/data/split_data.py
+    outs:
+    - data/processed
+  normalize_data:
+    cmd: python src/data/normalize_data.py
+    deps:
+    - data/processed
+    - src/data/normalize_data.py
+    outs:
+    - data/normalized
+  grid_search:
+    cmd: python src/models/grid_search.py
+    deps:
+    - data/processed
+    - data/normalized
+    - src/models/grid_search.py
+    outs:
+    - models/params
+  train:
+    cmd: python src/models/train_model.py
+    deps:
+    - data/normalized
+    - data/processed
+    - models/params
+    - src/models/train_model.py
+    outs:
+    - models/models
+  evaluate:
+    cmd: python src/models/evaluate_model.py
+    deps:
+    - data/normalized
+    - data/processed
+    - models/models
+    outs:
+    - metrics
+    - models/data

@@ -3,8 +3,9 @@ import pickle
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-PROCESSED_DIR = os.path.join("data", "processed_data")
-SCALER_DIR = os.path.join("models", "scaler")
+PROCESSED_DIR = os.path.join("data", "processed")
+NORMALIZED_DIR = os.path.join("data", "normalized")
+os.makedirs(NORMALIZED_DIR, exist_ok=True)
 
 X_train = pd.read_csv(os.path.join(PROCESSED_DIR, "X_train.csv"))
 X_test = pd.read_csv(os.path.join(PROCESSED_DIR, "X_test.csv"))
@@ -23,14 +24,10 @@ X_test_scaled = pd.DataFrame(
 )
 
 # Sauvegarde
-X_train_scaled.to_csv(os.path.join(PROCESSED_DIR, "X_train_scaled.csv"), index=False)
-X_test_scaled.to_csv(os.path.join(PROCESSED_DIR, "X_test_scaled.csv"), index=False)
-
-os.makedirs(SCALER_DIR, exist_ok=True)
-with open(os.path.join(SCALER_DIR, "scaler.pkl"), "wb") as f:
-    pickle.dump(scaler, f)
+X_train_scaled.to_csv(os.path.join(NORMALIZED_DIR, "X_train_scaled.csv"), index=False)
+X_test_scaled.to_csv(os.path.join(NORMALIZED_DIR, "X_test_scaled.csv"), index=False)
 
 print(
     "Normalisation terminée.\n"
-    f"Fichiers sauvegardés dans '{PROCESSED_DIR}' et scaler dans '{SCALER_DIR}'"
+    f"Fichiers sauvegardés dans '{NORMALIZED_DIR}'"
 )

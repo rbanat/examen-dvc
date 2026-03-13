@@ -3,8 +3,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 DATA_URL = "https://datascientest-mlops.s3.eu-west-1.amazonaws.com/mlops_dvc_fr/raw.csv"
-DATA_RAW_PATH = os.path.join("data", "raw_data", "raw.csv")
-PROCESSED_DIR = os.path.join("data", "processed_data")
+DATA_RAW_PATH = os.path.join("data", "raw", "raw.csv")
+PROCESSED_DIR = os.path.join("data", "processed")
+os.makedirs(PROCESSED_DIR, exist_ok=True)
 
 print(f"Chargement des données depuis {DATA_RAW_PATH}")
 df = pd.read_csv(DATA_RAW_PATH)

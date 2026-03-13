@@ -4,8 +4,10 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
 
-PROCESSED_DIR = os.path.join("data", "processed_data")
+PROCESSED_DIR = os.path.join("data", "processed")
+NORMALIZED_DIR = os.path.join("data", "normalized")
 PARAMS_DIR = os.path.join("models", "params")
+os.makedirs(PARAMS_DIR, exist_ok=True)
 
 PARAM_GRID = {
     "n_estimators": [100, 200],
@@ -15,7 +17,7 @@ PARAM_GRID = {
 }
 
 # Chargement des jeux de données
-X_train = pd.read_csv(os.path.join(PROCESSED_DIR, "X_train_scaled.csv"))
+X_train = pd.read_csv(os.path.join(NORMALIZED_DIR, "X_train_scaled.csv"))
 y_train = pd.read_csv(os.path.join(PROCESSED_DIR, "y_train.csv")).squeeze()
 
 # Grid Search
